@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Python Mentorship</title>
+
+		<link rel="stylesheet" href="../reveal/dist/reset.css">
+		<link rel="stylesheet" href="../reveal/dist/reveal.css">
+		<link rel="stylesheet" href="../reveal/dist/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../reveal/plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+        <section>
+          <img src="./assets/files.png" alt="Basics">
+        </section>
+
+        <section class="background" data-markdown>
+          # Python Programming
+          **Week 2**: Reading and Writing Files
+          
+          By [Thomas](https://github.com/thomas007g)
+        </section>
+      
+        <section data-markdown style="text-align: left;">
+          # Storing Data on filesystem
+
+          ## Advantages
+          
+          - Easiest way to store data without many dependencies is on the filesystem.
+          - Very fast access and read/write speed.
+          - Simpler interaction for quick projects.
+
+        </section>
+
+        <section data-markdown style="text-align: left;">
+          # Storing Data on filesystem
+
+          ## Drawbacks
+
+          - Very easily misplaced/deleted accidentally 
+          - No immediately available backup options ( could copy files to Google Drive/One Drive etc )
+          - Not able to perform optimised deep queries ( Like SQL WHERE clauses with subqueries and relations... blah blah blah...)
+          
+        </section>
+        <section>
+          <section style="text-align: left;">
+
+            <h1>Filesystem Paths</h1>
+
+            <img src="./assets/paths.svg" alt="Filesystem paths">
+
+          </section>
+
+          <section data-markdown style="text-align: left;">
+            # Absolute Path
+              
+            An absolute path is a path from the root
+
+            Examples
+            - /home/noah/holy_grail
+            - /home/var
+            - /
+
+          </section>
+
+          <section data-markdown style="text-align: left;">
+            # Relative Path
+
+            A relative path is a path from your current working directory ( `pwd` )
+
+            - ( from /home/thomas) `.`          points to /home/thomas
+            - ( from /home/thomas) `./mammals`  points to /home/thomas/mammals
+            - ( from /home/thomas) `..`         points to /home
+
+          </section>
+
+          <section data-markdown style="text-align: left;">
+            # So windows is pretty wack...
+
+            - . would refer to the local directory
+            - \ or / would refer to the *root of the drive you are currently on*
+            - C: would refer to C:\Windows
+            - C:\Foo would refer to C:\Foo
+
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown style="text-align: left;">
+            # Permissions
+
+            Read/Write/Execute
+          </section>
+          <section data-markdown style="text-align: left;">
+              # Python open() flags
+              ```
+                - "r" --> Default allows read
+                - "w" --> allows write access and creates the file if doesn't exist
+                - "x" --> creates the file exclusively, if the file exists, it errors
+                - "a" --> allows for append only (like appending to end of list)
+                - "b" --> opens in binary mode ( more on that later ;) )
+                - "+" --> read and write
+              ```
+              There are more, but not so important ¯\_(ツ)_/¯
+          </section>
+          <section data-markdown style="text-align: left;">
+              # Issues with opening a file
+
+              - May not have correct permissions to read/write that file
+              - If your file is opened by another file for writing at the same time as another program, there may be issues
+          </section>
+        </section>
+        
+      </div>
+      <div class='footer'>
+        <a href="./index.html" style="position: absolute; z-index: 1; margin: 0.5em; text-decoration: none; color:#2a76dd; font-size: 4vw; font-family: 'Source Code Pro', sans-serif;">
+          x
+        </a>
+    </div>
+		</div>
+
+		<script src="../reveal/dist/reveal.js"></script>
+		<script src="../reveal/plugin/notes/notes.js"></script>
+		<script src="../reveal/plugin/markdown/markdown.js"></script>
+		<script src="../reveal/plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
