@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Go Mentorship</title>
+
+		<link rel="stylesheet" href="../reveal/dist/reset.css">
+		<link rel="stylesheet" href="../reveal/dist/reveal.css">
+		<link rel="stylesheet" href="../reveal/dist/theme/black.css" id="theme">
+
+		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../reveal/plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section data-markdown>
+                    # Lesson 1
+                    The basics
+                </section>
+                <section data-markdown>
+                    # Hello World
+                    ```go
+package main
+import "fmt"
+func main() {
+    fmt.Println("hello world")
+}
+                    ```
+                </section>
+                <section data-markdown>
+                    # Packages
+                    The `import "fmt"` is importing a package. In this case it's `fmt`, part of the standard library.
+
+                    Packages provide reusable code for you to use in your programs. In this case `fmt` provides formatting functions such as `Println`.
+                </section>
+                <section data-markdown>
+                    # Variables
+                    ```go
+package main
+import "fmt"
+
+func main() {
+
+    var a = "initial"
+    fmt.Println(a)
+
+    var b, c int = 1, 2
+    fmt.Println(b, c)
+
+    var d = true
+    fmt.Println(d)
+
+    var e int
+    fmt.Println(e)
+
+    f := "apple"
+    fmt.Println(f)
+}
+                    ```
+                </section>
+                <section data-markdown>
+                    # For loop
+                    ```go
+i := 1
+for i <= 3 {
+    fmt.Println(i)
+    i = i + 1
+}
+
+for j := 7; j <= 9; j++ {
+    fmt.Println(j)
+}
+
+for {
+    fmt.Println("loop")
+    break
+}
+
+for n := 0; n <= 5; n++ {
+    if n%2 == 0 {
+        continue
+    }
+    fmt.Println(n)
+}
+                    ```
+                </section>
+                <section data-markdown>
+                    # Switch
+                    ```go
+i := 2
+fmt.Print("Write ", i, " as ")
+switch i {
+case 1:
+    fmt.Println("one")
+case 2:
+    fmt.Println("two")
+case 3:
+    fmt.Println("three")
+}
+
+t := time.Now()
+switch {
+case t.Hour() < 12:
+    fmt.Println("It's before noon")
+default:
+    fmt.Println("It's after noon")
+}
+                    ```
+                </section>
+			</div>
+		</div>
+
+		<script src="../reveal/dist/reveal.js"></script>
+		<script src="../reveal/plugin/notes/notes.js"></script>
+		<script src="../reveal/plugin/markdown/markdown.js"></script>
+		<script src="../reveal/plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
