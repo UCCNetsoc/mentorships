@@ -65,6 +65,21 @@ func main() {
                     ```
                 </section>
                 <section data-markdown>
+                    # If statements
+                    ```go
+package main
+
+import "fmt"
+
+func main() {
+	i := 1
+	if i > 0 {
+		fmt.Println("yes")
+	}
+}
+                    ```
+                </section>
+                <section data-markdown>
                     # For loop
                     ```go
 i := 1
@@ -91,6 +106,52 @@ for n := 0; n <= 5; n++ {
                     ```
                 </section>
                 <section data-markdown>
+                    # Binary Literals
+                    ```go
+package main
+
+import "fmt"
+
+func main() {
+	a := 1
+	c := 0b1
+	fmt.Println(a == c)
+}
+                    ```
+                </section>
+                <section data-markdown>
+                    # Arrays
+                    ```go
+package main
+
+import "fmt"
+
+func main() {
+	a := [10]int{1, 2, 3, 4, 5}
+	for _, value := range a {
+		fmt.Println(value)
+	}
+}
+                    ```
+                </section>
+                <section data-markdown>
+                    # Slices
+                    ```go
+package main
+
+import "fmt"
+
+func main() {
+	a := []int{1, 2, 3}
+	fmt.Println(len(a), cap(a))
+	a = append(a, 1) // Copy O(N)
+	fmt.Println(len(a), cap(a))
+	a = append(a, 1) // No Copy O(1)
+	fmt.Println(len(a), cap(a))
+}
+                    ```
+                </section>
+                <section data-markdown>
                     # Switch
                     ```go
 i := 2
@@ -111,6 +172,31 @@ case t.Hour() < 12:
 default:
     fmt.Println("It's after noon")
 }
+                    ```
+                </section>
+		<section data-markdown>
+                    # Type Switch
+                    ```go
+package main
+
+import "fmt"
+
+type gamer int
+
+func main() {
+	var g gamer = 1
+	var i interface{} = g
+	// i = 1
+	switch i.(type) {
+	case gamer:
+		fmt.Println("ITS A GAMER")
+	case int:
+		fmt.Println("ITS A INT")
+	case string:
+		fmt.Println("ITS A STRING")
+	}
+}
+
                     ```
                 </section>
 			</div>
