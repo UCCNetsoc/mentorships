@@ -1,0 +1,4 @@
+efc648a6-22b9-11eb-9e31-00155d760224,Toy Yoda,6000,Motors Sales Ltd.
+f86fcbee-22b9-11eb-8b9f-00155d760224,Gamer Mouse,60,Logitech
+ff81c7a2-22b9-11eb-a09c-00155d760224,Gamerer Keyboard,90,Razer
+05465a04-22ba-11eb-969b-00155d760224,RGB Lighting,20,Simps Ltd.

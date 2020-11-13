@@ -46,8 +46,7 @@
 
           - Very easily misplaced/deleted accidentally 
           - No immediately available backup options ( could copy files to Google Drive/One Drive etc )
-          - Not able to perform optimised deep queries ( Like SQL WHERE clauses with subqueries and relations... blah blah blah...)
-          
+          - Not able to perform optimised complex queries ( Like SQL WHERE clauses with subqueries and relations... blah blah blah... do it yourself, blah...)
         </section>
         <section>
           <section style="text-align: left;">
@@ -108,13 +107,13 @@
                 - "b" --> opens in binary mode ( more on that later ;) )
                 - "+" --> read and write
               ```
-              There are more, but not so important ¯\_(ツ)_/¯
+              There are more, but not so important ¯\\_(ツ)_/¯
           </section>
           <section data-markdown style="text-align: left;">
               # Issues with opening a file
 
               - May not have correct permissions to read/write that file
-              - If your file is opened by another file for writing at the same time as another program, there may be issues
+              - If your file is opened by another file for writing at the same time as another program, there may be issues -> overwriting etc
           </section>
         </section>
         
@@ -136,7 +135,6 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
