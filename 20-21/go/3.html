@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Go Mentorship</title>
+
+    <link rel="stylesheet" href="../reveal/dist/reset.css" />
+    <link rel="stylesheet" href="../reveal/dist/reveal.css" />
+    <link rel="stylesheet" href="../reveal/dist/theme/black.css" id="theme" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="../reveal/plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+		  # Lesson 3 
+		  Goroutines, channels and more
+		</section>
+		<section data-markdown>
+			```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func f(from string) {
+    for i := 0; i < 3; i++ {
+        fmt.Println(from, ":", i)
+    }
+}
+
+func main() {
+
+    f("direct")
+
+    go f("goroutine")
+
+    go func(msg string) {
+        fmt.Println(msg)
+    }("going")
+
+    time.Sleep(time.Second)
+    fmt.Println("done")
+}
+		```
+		</section>
+		<section data-markdown>
+			# Mutex
+			```go
+var mutex = &sync.Mutex{}
+var state = make(map[int]int)
+// each goroutine.
+for r := 0; r < 100; r++ {
+	go func() {
+		total := 0
+		for {
+			key := rand.Intn(5)
+			mutex.Lock()
+			total += state[key]
+			mutex.Unlock()
+			// Wait a bit between reads.
+			time.Sleep(time.Millisecond)
+		}
+	}()
+}
+// We'll also start 10 goroutines to simulate writes,
+// using the same pattern we did for reads.
+for w := 0; w < 10; w++ {
+	go func() {
+		for {
+			key := rand.Intn(5)
+			val := rand.Intn(100)
+			mutex.Lock()
+			state[key] = val
+			mutex.Unlock()
+			time.Sleep(time.Millisecond)
+		}
+	}()
+}
+			```
+		</section>
+		<section data-markdown>
+			# Channels
+			```go
+package main
+
+import "fmt"
+
+func main() {
+
+    messages := make(chan string)
+
+    go func() { messages <- "ping" }()
+
+    msg := <-messages
+    fmt.Println(msg)
+}
+			```
+		</section>
+		<section data-markdown>
+			```go 
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func worker(done chan bool) {
+    fmt.Print("working...")
+    time.Sleep(time.Second)
+    fmt.Println("done")
+
+    done <- true
+}
+
+func main() {
+
+    done := make(chan bool, 1)
+    go worker(done)
+
+    <-done
+}
+			```
+		</section>
+      </div>
+    </div>
+
+    <script src="../reveal/dist/reveal.js"></script>
+    <script src="../reveal/plugin/notes/notes.js"></script>
+    <script src="../reveal/plugin/markdown/markdown.js"></script>
+    <script src="../reveal/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
