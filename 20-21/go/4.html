@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Go Mentorship</title>
+
+		<link rel="stylesheet" href="../reveal/dist/reset.css">
+		<link rel="stylesheet" href="../reveal/dist/reveal.css">
+		<link rel="stylesheet" href="../reveal/dist/theme/black.css" id="theme">
+
+		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../reveal/plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                
+                <section data-markdown>
+					# Lesson 4
+					Web Stuff
+				</section>
+				<section data-markdown>
+					# Example web server
+					```go
+						package main
+
+						import (
+							"fmt"
+							"net/http"
+						)
+
+						func hello(w http.ResponseWriter, req *http.Request) {
+							fmt.Fprintf(w, "hello\n")
+						}
+
+						func headers(w http.ResponseWriter, req *http.Request) {
+							for name, headers := range req.Header {
+								for _, h := range headers {
+									fmt.Fprintf(w, "%v: %v\n", name, h)
+								}
+							}
+						}
+
+						func main() {
+							http.HandleFunc("/hello", hello)
+							http.HandleFunc("/headers", headers)
+
+							http.ListenAndServe(":8090", nil)
+						}
+					```
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal/dist/reveal.js"></script>
+		<script src="../reveal/plugin/notes/notes.js"></script>
+		<script src="../reveal/plugin/markdown/markdown.js"></script>
+		<script src="../reveal/plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
